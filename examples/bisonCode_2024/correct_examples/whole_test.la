@@ -1,0 +1,88 @@
+-- comp check
+comp Book:
+  #title, #isbn: str;
+  #author: Person;  
+  #numOfCopies: integer;
+  #price: scalar;
+
+  -- def in comp check
+  def setBook(t: str, a: Person, numOfCopies: integer, price: scalar):
+    
+    #title = t;
+    #author = a;
+    #numOfCopies = numOfCopies;
+    #price = price;
+  enddef;
+
+  def printBook():
+    write("Title: %s\n", #title);
+    writeStr("Author:");
+    #author.printPersonInfo();
+    write("Price:%f\n", #price);
+    write("Number of available copies: %d\n", #numOfCopies);    
+  enddef;
+endcomp;
+
+-- variable declaration check
+const book = 3 + 2 : integer;
+book[2]: integer;
+const bool3 = 1 : boolean;
+const string1 = "All books" : str;
+const array1[3] = 3 + 2 : integer;
+const arra2[] = 3 + 2 : integer;
+
+--def check
+def prime(n: integer) - > bool: 
+   i: integer; 
+   result, isPrime: bool;
+      
+  if (n < 0): 
+    result = prime(n);
+  else: 
+    if (n < 2): 
+      result = False;    
+    else: 
+      if (n == 2): 
+        result = True;
+      else: 
+        if (n % 2 == 0):
+          result = False;
+        else:  
+          i = 3;
+          isPrime = True;
+          while (isPrime and (i < n / 2) ): 
+            isPrime = n % i != 0;
+            i = i + 2;
+          endwhile;
+          result = isPrime;
+        endif;
+      endif;
+    endif;
+  endif;
+   
+  return result;
+enddef;
+
+-- main check
+def main(): 
+
+  limit = readInteger();  
+
+  -- 2 is prime
+  writeInteger(2);
+  writeStr(" "); 
+
+  counter = 1; -- count the prime numbers found
+  -- check only odd numbers for primality  
+  for num in [3: limit + 1: 2]:  
+    if (prime(num)):  
+      counter = counter + 1;
+      writeInteger(num);
+      writeStr(" ");
+    endif;      
+  endfor;
+  
+   writeStr("\nThe total number of primes found is:");
+   writeInteger(counter);
+   writeStr("\n");   
+enddef;

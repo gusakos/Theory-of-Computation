@@ -1,0 +1,7 @@
+def cube(i: integer) -> integer:
+	return i*i*i;
+enddef;
+
+def main():
+writeStr(message);
+enddef;
